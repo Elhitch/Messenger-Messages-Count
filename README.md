@@ -6,7 +6,7 @@ The Messenger Messages Counter is a simple script used to quickly preview the am
 ### How do I run the script?
 In order to run the script, copy the content of the messageCounter.js file into the console of your web browser while the active tab is running [Messenger](https://www.messenger.com), then simply press 'Enter'. The page is going to be rewritten into a blank one - first, your ID is going to be displayed along with a link to your profile. Each new line has the following format:
 
-\***Other user ID\*** - \***Messages count\***
+\***Other user ID\*** - \***Messages count\***\
 You could open in the \***Other user ID\*** in a new tab in order to preview Facebook profile. Some 'Other user ID' fields might contain 'null' as content - see below for details.
 
 ### How does it work?
