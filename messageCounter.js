@@ -28,7 +28,7 @@ function getSource() {
 }
 
 document.write("<html><title>Messenger Statistics</title><head><script></script></head><body>");
-window.fbAsyncInit = function() {
+/*window.fbAsyncInit = function() {
     FB.init({
       appId            : '1597526527001737',
       autoLogAppEvents : true,
@@ -43,7 +43,7 @@ window.fbAsyncInit = function() {
      js = d.createElement(s); js.id = id;
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+   }(document, 'script', 'facebook-jssdk'));*/
 
 var data = "";
 var accountID = "";
