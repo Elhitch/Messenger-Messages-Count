@@ -61,9 +61,9 @@ request.onreadystatechange = function() {
   if (request.readyState == 4) {
     data = request.responseText;
     // Gets the entire line containing the current user's ID:
-    var accountIDRaw = data.match(/ACCOUNT_ID":"[0-9]+/) // ACCOUNT_ID":"9159712397132
+    var accountIDRaw = data.match(/ACCOUNT_ID":"[0-9]+/)
     // Gets the ID only of the current user:
-    accountID = String(accountIDRaw).match(/\d+/); // 9159712397132
+    accountID = String(accountIDRaw).match(/\d+/);
     // The ID is going to be used to prevent information about this user to be read in the script later on.
 
     document.title = "Messenger Statistics";
