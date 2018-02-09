@@ -27,24 +27,7 @@ function getSource() {
   throw new Error("Could not create HTTP request object.");
 }
 
-document.write("<html><title>Messenger Statistics</title><head><script></script></head><body>");
-/*window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '1597526527001737',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.11'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));*/
-
+document.write("<html><title>Messenger Statistics</title><head></head><body>");
 var data = "";
 var accountID = "";
 var otherUserIDs;
@@ -63,7 +46,7 @@ request.onreadystatechange = function() {
     // Gets the entire line containing the current user's ID:
     var accountIDRaw = data.match(/ACCOUNT_ID":"[0-9]+/)
     // Gets the ID only of the current user:
-    accountID = String(accountIDRaw).match(/\d+/);
+    accountID = accountIDRaw.match(/\d+/);
     // The ID is going to be used to prevent information about this user to be read in the script later on.
 
     document.title = "Messenger Statistics";
@@ -76,13 +59,13 @@ request.onreadystatechange = function() {
     otherUserIDsCnt = data.match(/other_user_id":(null|"[0-9]+)/g).length;
     // Does the same for the amount of messages exchanged with each ID saved:
     messagesCount = data.match(/messages_count":[0-9]+/g);
-    messagesCountCnt = data.match(/messages_count":[0-9]+/g).length 
+    messagesCountCnt = data.match(/messages_count":[0-9]+/g).length
     if (messagesCountCnt === otherUserIDsCnt) {
       var loopUntil = messagesCountCnt;
       for (i = 0; i < loopUntil; i++) {
 
-        if (otherUserIDs !== "null") {
-          workOn = (String)(otherUserIDs[i].match(/\d+/));
+        if (otherUserIDs[i] !== "null") {
+          workOn = otherUserIDs[i].match(/\d+/);
           document.write(workOn.link("https://www.facebook.com/" + workOn));
         }
         else document.write("Unknown group");
