@@ -27,7 +27,7 @@ function getSource() {
   throw new Error("Could not create HTTP request object.");
 }
 
-document.write("<html><title>Messenger Statistics</title><head></head><body>");
+document.write("<html><title>Messenger Statistics</title><head><script></script></head><body>");
 var data = "";
 var accountID = "";
 var otherUserIDs;
@@ -44,9 +44,9 @@ request.onreadystatechange = function() {
   if (request.readyState == 4) {
     data = request.responseText;
     // Gets the entire line containing the current user's ID:
-    var accountIDRaw = data.match(/ACCOUNT_ID":"[0-9]+/)
+    var accountIDRaw = String(data.match(/ACCOUNT_ID":"[0-9]+/));
     // Gets the ID only of the current user:
-    accountID = accountIDRaw.match(/\d+/);
+    accountID = String(accountIDRaw.match(/\d+/));
     // The ID is going to be used to prevent information about this user to be read in the script later on.
 
     document.title = "Messenger Statistics";
@@ -59,18 +59,20 @@ request.onreadystatechange = function() {
     otherUserIDsCnt = data.match(/other_user_id":(null|"[0-9]+)/g).length;
     // Does the same for the amount of messages exchanged with each ID saved:
     messagesCount = data.match(/messages_count":[0-9]+/g);
-    messagesCountCnt = data.match(/messages_count":[0-9]+/g).length
+    messagesCountCnt = data.match(/messages_count":[0-9]+/g).length;
     if (messagesCountCnt === otherUserIDsCnt) {
       var loopUntil = messagesCountCnt;
       for (i = 0; i < loopUntil; i++) {
 
-        if (otherUserIDs[i] !== "null") {
-          workOn = otherUserIDs[i].match(/\d+/);
+        if (otherUserIDs[i] != null) {
+          workOn = (String)(otherUserIDs[i].match(/\d+/));
           document.write(workOn.link("https://www.facebook.com/" + workOn));
         }
-        else document.write("Unknown group");
+        else {
+          document.write("Unknown group");
+        }
         document.write(" - ");
-        document.write(String(messagesCount[i].match(/\d+/)));
+        document.write(messagesCount[i].match(/\d+/));
         document.write("<br>");
       }
     }
